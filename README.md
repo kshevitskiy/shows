@@ -8,7 +8,8 @@
 
 ### 1. Setup & Initial Research 🧑‍💻
 
-- **TVMaze API:** Familiarize with the API and available endpoints.
+- ✅ **TVMaze API:** Familiarize with the API and available endpoints.
+  - [Filtering and Sorting Limitations in the TVMaze API](/api.md)
 - **UI Patterns:** Research common TV app UI patterns, focusing on navigation and presentation (e.g., horizontal lists, focus management).
 
 ### 2. Core Features ⚙️
