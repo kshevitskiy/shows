@@ -1,4 +1,4 @@
-# TV Maze App Research
+# TV Maze Project Research
 
 ## Objective
 
