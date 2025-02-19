@@ -1,0 +1,13 @@
+services:
+  api:
+    # Override: Instead of running API inside Docker, use `npm run serve` to run it locally
+    command: ['npm', 'run', 'serve']
+
+    # Override: Bind the local project folder inside the container
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+    # Override: Set environment to development
+    environment:
+      NODE_ENV: development
