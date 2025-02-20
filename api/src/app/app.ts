@@ -1,17 +1,32 @@
-// Import h3 as npm dependency
-import { createApp, createRouter, defineEventHandler } from 'h3'
+import {
+  createApp,
+  createRouter,
+  defineEventHandler,
+  sendProxy,
+  useBase,
+} from 'h3'
+import { TV_MAZE_API_URL } from '../constants'
+import * as shows from './handlers/shows'
 
-// Create an app instance
+// create an app instance
 export const app = createApp()
 
-// Create a new router and register it in app
 const router = createRouter()
-app.use(router)
 
-// Add a new route that matches GET requests to / path
-router.get(
-  '/',
+const v1 = createRouter()
+v1.get(
+  '**',
   defineEventHandler((event) => {
-    return { message: '⚡️ Tadaa!' }
+    // proxy requests to tv-maze api
+    const path = event.path.replace('/api/v1', '')
+    return sendProxy(event, TV_MAZE_API_URL + path)
   })
 )
+
+const v2 = createRouter()
+v2.get('/shows', shows.list)
+
+router.use('/api/v1/**', useBase('/api/v1', v1.handler))
+router.use('/api/v2/**', useBase('/api/v2', v2.handler))
+
+app.use(router)
