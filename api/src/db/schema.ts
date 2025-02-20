@@ -4,65 +4,96 @@ import {
   text,
   varchar,
   integer,
-  timestamp,
   date,
+  timestamp,
+  unique,
+  foreignKey,
   numeric,
   primaryKey,
 } from 'drizzle-orm/pg-core'
+import { sql } from 'drizzle-orm'
 
-// shows
 export const shows = pgTable('shows', {
-  id: serial('id').primaryKey(),
-  url: text('url').notNull(),
-  name: varchar('name', { length: 255 }).notNull(),
-  type: varchar('type', { length: 50 }).notNull(),
-  language: varchar('language', { length: 50 }),
-  status: varchar('status', { length: 50 }).notNull(),
-  runtime: integer('runtime'),
+  id: serial().primaryKey().notNull(),
+  url: text().notNull(),
+  name: varchar({ length: 255 }).notNull(),
+  type: varchar({ length: 50 }).notNull(),
+  language: varchar({ length: 50 }),
+  status: varchar({ length: 50 }).notNull(),
+  runtime: integer(),
   averageRuntime: integer('average_runtime'),
-  premiered: date('premiered'),
-  ended: date('ended'),
+  premiered: date(),
+  ended: date(),
   officialSite: text('official_site'),
-  weight: integer('weight'),
-  summary: text('summary'),
-  updated: timestamp('updated').notNull(),
+  weight: integer(),
+  summary: text(),
+  updated: timestamp({ mode: 'string' }).notNull(),
 })
 
-// genres
-export const genres = pgTable('genres', {
-  id: serial('id').primaryKey(),
-  name: varchar('name', { length: 100 }).notNull().unique(),
-})
-
-// show genres
-export const showGenres = pgTable(
-  'show_genres',
+export const genres = pgTable(
+  'genres',
   {
-    showId: integer('show_id').references(() => shows.id),
-    genreId: integer('genre_id').references(() => genres.id),
+    id: serial().primaryKey().notNull(),
+    name: varchar({ length: 100 }).notNull(),
+  },
+  (table) => [unique('genres_name_unique').on(table.name)]
+)
+
+export const ratings = pgTable(
+  'ratings',
+  {
+    id: serial().primaryKey().notNull(),
+    showId: integer('show_id'),
+    average: numeric({ precision: 3, scale: 1 }).default('0').notNull(),
   },
   (table) => [
-    primaryKey({ columns: [table.showId, table.genreId] }), // Composite primary key
+    foreignKey({
+      columns: [table.showId],
+      foreignColumns: [shows.id],
+      name: 'ratings_show_id_shows_id_fk',
+    }),
+    unique('ratings_show_id_unique').on(table.showId),
   ]
 )
 
-// ratings
-export const ratings = pgTable('ratings', {
-  id: serial('id').primaryKey(),
-  showId: integer('show_id')
-    .references(() => shows.id)
-    .unique(),
-  average: numeric('average', { precision: 3, scale: 1 })
-    .default('0')
-    .notNull(),
-})
+export const images = pgTable(
+  'images',
+  {
+    id: serial().primaryKey().notNull(),
+    showId: integer('show_id'),
+    medium: text(),
+    original: text(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.showId],
+      foreignColumns: [shows.id],
+      name: 'images_show_id_shows_id_fk',
+    }),
+    unique('images_show_id_unique').on(table.showId),
+  ]
+)
 
-// images
-export const images = pgTable('images', {
-  id: serial('id').primaryKey(),
-  showId: integer('show_id')
-    .references(() => shows.id)
-    .unique(),
-  medium: text('medium'),
-  original: text('original'),
-})
+export const showGenres = pgTable(
+  'show_genres',
+  {
+    showId: integer('show_id').notNull(),
+    genreId: integer('genre_id').notNull(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.showId],
+      foreignColumns: [shows.id],
+      name: 'show_genres_show_id_shows_id_fk',
+    }),
+    foreignKey({
+      columns: [table.genreId],
+      foreignColumns: [genres.id],
+      name: 'show_genres_genre_id_genres_id_fk',
+    }),
+    primaryKey({
+      columns: [table.showId, table.genreId],
+      name: 'show_genres_show_id_genre_id_pk',
+    }),
+  ]
+)
