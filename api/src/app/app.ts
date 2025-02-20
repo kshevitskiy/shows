@@ -7,6 +7,7 @@ import {
 } from 'h3'
 import { TV_MAZE_API_URL } from '../constants'
 import * as shows from './handlers/shows'
+import * as genres from './handlers/genres'
 
 // create an app instance
 export const app = createApp()
@@ -25,6 +26,7 @@ v1.get(
 
 const v2 = createRouter()
 v2.get('/shows', shows.list)
+v2.get('/genres', genres.list)
 
 router.use('/api/v1/**', useBase('/api/v1', v1.handler))
 router.use('/api/v2/**', useBase('/api/v2', v2.handler))
