@@ -10,7 +10,9 @@
 
 - ✅ **TVMaze API:** Familiarize with the API and available endpoints.
   - [Filtering and Sorting Limitations in the TVMaze API](/api.md)
-- **UI Patterns:** Research common TV app UI patterns, focusing on navigation and presentation (e.g., horizontal lists, focus management).
+- ✅ **UI Patterns:** Research common TV app UI patterns, focusing on navigation and presentation (e.g., horizontal lists, focus management).
+  - [Designing for Television – TV Ui design](https://marvelapp.com/blog/designing-for-television/)
+  - [How to Create a UI Design for Smart TVs: 7 Tried & Tested Tips](https://www.purrweb.com/blog/how-to-design-an-app-for-smart-tvs/)
 
 ### 2. Core Features ⚙️
 
