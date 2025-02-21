@@ -1,11 +1,26 @@
-import './assets/main.css'
+import "./assets/main.css";
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import { getGenres } from "./service/api";
+import { useAppData } from "./composables/useAppData";
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import { HiSolidChevronLeft, HiHome } from "oh-vue-icons/icons";
 
-const app = createApp(App)
+addIcons(HiSolidChevronLeft, HiHome);
 
-app.use(router)
+async function bootstrap() {
+  // pre-fetch app data
+  const genres = await getGenres();
+  useAppData().setup({ genres: genres.data });
 
-app.mount('#app')
+  // create app
+  const app = createApp(App);
+
+  app.component("Icon", OhVueIcon);
+  app.use(router);
+  app.mount("#app");
+}
+
+bootstrap();

@@ -1,85 +1,46 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { onErrorCaptured, ref, computed } from "vue";
+import { useRoute, RouterView } from "vue-router";
+import { useAppState } from "@/composables/useAppState";
+import Loader from "@/components/Loader.vue";
+import Cover from "@/components/Cover.vue";
+import { RouteNames } from "@/router";
+
+const { pending } = useAppState();
+const route = useRoute();
+const error = ref<string | null>(null);
+
+onErrorCaptured((err) => {
+  error.value = err.message;
+  return false;
+});
+
+const grayscaleCover = computed(() => RouteNames.SEARCH_GENRE_ID === route.name);
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <Cover :grayscale="grayscaleCover" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <RouterView v-slot="{ Component }">
+    <template v-if="Component">
+      <Transition name="fade" mode="out-in">
+        <Suspense>
+          <!-- main content -->
+          <Component :is="Component" />
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+          <!-- loading state -->
+          <!-- <template #fallback> Loading... </template> -->
+        </Suspense>
+      </Transition>
+    </template>
+  </RouterView>
 
-  <RouterView />
+  <div v-if="error">Error: {{ error }}</div>
+
+  <Loader
+    class="z-10 fixed w-16 h-16 bottom-4 right-4 text-amber-400 opacity-0 invisible transition"
+    :class="{
+      'opacity-100 visible': pending,
+    }"
+  />
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
