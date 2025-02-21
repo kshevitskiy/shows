@@ -16,23 +16,6 @@ const params = computed(() => ({
 }));
 const triggerRef = useTemplateRef<HTMLElement>("triggerRef");
 
-// const { reset } = useInfiniteScroll(
-//   triggerRef,
-//   () => {
-//     // load more
-//     // data.value.push(...moreData)
-//     console.log("__Trigger__");
-//   },
-//   {
-//     distance: 100,
-//     // canLoadMore: () => {
-//     //   // inidicate when there is no more content to load so onLoadMore stops triggering
-//     //   // if (noMoreContent) return false
-//     //   return true // for demo purposes
-//     // },
-//   }
-// );
-
 watchEffect(() => doDebounceSearch(params.value));
 </script>
 
