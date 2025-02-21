@@ -13,7 +13,7 @@ import Bar from "@/components/Bar.vue";
         <Bar>
           <Navbar />
         </Bar>
-        <Navigation />
+        <Navigation data-testid="navigation" />
       </Sidebar>
 
       <main class="min-h-screen xl:w-9/12">

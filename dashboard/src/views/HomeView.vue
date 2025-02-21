@@ -13,7 +13,7 @@ const { query } = useSearch();
   <SearchLayout>
     <template #bar>
       <Bar class="justify-between">
-        <Search v-model="query" />
+        <Search v-model="query" data-testid="search-input" />
       </Bar>
     </template>
 

@@ -30,6 +30,7 @@ function onFocus(menuItem: MenuItem) {
       class="truncate opacity-50 transition-opacity inline-flex items-center h-12 px-6 outline-none text-xl xl:text-3xl 2xl:text-4xl"
       active-class="font-bold text-amber-400 opacity-100"
       :aria-current="i === activeIndex ? 'page' : undefined"
+      data-testid="menu-item"
       @focus="() => onFocus(item)"
     >
       {{ item.label }}

@@ -32,7 +32,7 @@ async function onFocus() {
 </script>
 
 <template>
-  <Component :is="as">
+  <Component :is="as" data-testid="show-card">
     <RouterLink
       :to="{ name: RouteNames.SHOW_ID, params: { id: show.id } }"
       class="group grid gap-1 outline-none transition-transform duration-500 focus:scale-105"
@@ -48,12 +48,17 @@ async function onFocus() {
         />
         <Tag
           v-if="show.rating.average"
-          :label="`⭐️ ${show.rating.average}`"
+          :label="show.rating.average ?? '0.0'"
           class="absolute top-2 right-2"
-        />
+        >
+          <span>⭐️</span>
+          <span data-testid="show-rating">{{ show.rating.average }}</span>
+        </Tag>
       </div>
       <header>
-        <h3 class="text-xl font-medium group-focus:text-amber-400">{{ show.name }}</h3>
+        <h3 class="text-xl font-medium group-focus:text-amber-400" data-testid="show-name">
+          {{ show.name }}
+        </h3>
       </header>
     </RouterLink>
   </Component>
