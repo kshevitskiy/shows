@@ -33,6 +33,7 @@ await fetchData();
           :width="400"
           :height="600"
           :sizes="item?.image"
+          :alt="item.name || `Season ${item.number}`"
           class-name="w-full aspect-2/3 object-cover rounded-2xl p-px border border-white/5"
         />
       </figure>

@@ -4,7 +4,6 @@ import { useRoute, useRouter } from "vue-router";
 import { getShow, getShowImages } from "@/service/api";
 import { useAppState } from "@/composables/useAppState";
 import Base from "@/layouts/base.vue";
-import Image from "@/components/Image.vue";
 import Tag from "@/components/Tag.vue";
 import Button from "@/components/Button.vue";
 import IconButton from "@/components/IconButton.vue";
@@ -29,7 +28,8 @@ async function fetchData() {
 
     if (!appState.cover.value) {
       const { data: images } = await getShowImages(showId);
-      appState.setCover(getLargestBackgroundImage(images));
+      const image = getLargestBackgroundImage(images);
+      appState.setCover(image ?? null);
     }
   } catch (exception) {
     throw exception;
@@ -51,7 +51,7 @@ await fetchData();
     <article class="relative grid gap-14">
       <header>
         <div class="xl:w-2/3">
-          <Tag :label="`⭐️ ${result?.rating.average}`" class="mb-6" />
+          <Tag :label="`⭐️ ${result?.rating.average ?? '0.0'}`" class="mb-6" />
           <h1 class="font-bold mb-8 text-5xl xl:text-7xl 2xl:text-9xl">{{ result?.name }}</h1>
         </div>
         <div class="xl:w-4/5">

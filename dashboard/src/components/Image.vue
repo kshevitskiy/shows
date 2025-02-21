@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   className: "",
 });
 
-const defaultPlaceholder = "https://via.placeholder.com/300";
+const defaultPlaceholder = `https://placehold.co/400x600/000000/FFF?text=${props.alt}`;
 
 const fallbackSrc = computed(() => props.sizes?.original || defaultPlaceholder);
 </script>
@@ -35,6 +35,7 @@ const fallbackSrc = computed(() => props.sizes?.original || defaultPlaceholder);
       :src="fallbackSrc"
       :alt="alt"
       :loading="loading"
+      class="backdrop-blur"
       :class="className"
     />
   </picture>

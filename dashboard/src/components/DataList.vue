@@ -18,7 +18,11 @@ withDefaults(
     <Transition name="fade" mode="out-in">
       <ul v-if="items.length" v-bind="$attrs" class="grid">
         <li v-for="(item, index) in items" :key="index">
-          <slot name="item" :item="item" />
+          <slot name="item" :item="item">
+            <pre>
+              {{ item }}
+            </pre>
+          </slot>
         </li>
       </ul>
 

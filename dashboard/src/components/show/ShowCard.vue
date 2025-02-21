@@ -17,17 +17,15 @@ const props = withDefaults(
   }
 );
 
-const appState = useAppState();
+const { setCover } = useAppState();
 
 async function onFocus() {
   try {
-    appState.setPending(true);
     const { data: images } = await getShowImages(props.show.id);
-    appState.setCover(getLargestBackgroundImage(images));
+    const image = getLargestBackgroundImage(images);
+    setCover(image ?? null);
   } catch (exception) {
     throw exception;
-  } finally {
-    appState.setPending(false);
   }
 }
 </script>
