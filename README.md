@@ -16,11 +16,13 @@
 
 ### 2. Core Features ⚙️
 
-- **Horizontal Lists of TV Shows:**
+- ✅ **Horizontal Lists of TV Shows:**
   1. Group shows by genre (Drama, Comedy, etc.).
   2. Sort by ratings.
-- **Search Feature:** Allow users to search for shows by name.
-- **Detailed Show View:** Display detailed information for a selected show (overview, cast, episode list, etc.).
+- ✅ **Search Feature:** Allow users to search for shows by name.
+- ✅ **Detailed Show View:** Display detailed information for a selected show (overview, ~~cast~~, ~~episode list~~, etc.).
+
+> **Update.** Since show browsing has a lot of records (initial `pageSize` is set to 20, but user should be able to get more records with eg. _load more_ or _pagination_ functionality), for better UX it is suggested to switch from **horizontal list** UI pattern to **grid** layout.
 
 ### 3. UI & UX Design 🎨
 
@@ -34,18 +36,20 @@
 
 ### 4. State Management & Data Handling 💾
 
-- **Vue's Reactivity:** Handle state using Vue's reactivity system.
-- **On-Demand API Fetching:** Fetch TV show data when needed (minimize load time).
-- **Local Storage:** Cache relevant data to avoid redundant API requests.
+- ✅ **Vue's Reactivity:** Handle state using Vue's reactivity system.
+- ✅ **On-Demand API Fetching:** Fetch TV show data when needed (minimize load time).
+- ❌ **Local Storage:** Cache relevant data to avoid redundant API requests.
 
 ### 5. User Navigation 🔄
 
-- **Arrow Key Navigation:** Enable smooth scrolling in horizontal lists using arrow keys.
-- **Focus Management:** Highlight focused items and ensure proper accessibility for TV screens.
+- ❌ **Arrow Key Navigation:** Enable smooth scrolling in horizontal lists using arrow keys.
+- ✅ **Focus Management:** Highlight focused items and ensure proper accessibility for TV screens.
 
 ### 6. Animations & Interactions ✨
 
-- **Basic Animations:** Implement basic transition effects (e.g., fade, scale) using Vue’s transition system and Tailwind classes.
+- ✅ **Basic Animations:** Implement basic transition effects (e.g., fade, scale) using Vue’s transition system and Tailwind classes.
+
+> **Update.** Vue page-transitions implemented
 
 ### 7. Testing & Iteration 🧪
 
@@ -87,11 +91,13 @@ Focus on BDD to define clear behaviors for the app, ensuring that all scenarios 
 
 ### Tech Stack 🔧
 
+- **Backend:** `H3`, `PostgreSQL`
 - **Frontend:** `Vue.js`, `Tailwind CSS`, `vueuse`
 - **State Management:** Vue’s reactivity, LocalStorage
-- **API:** TV Maze API
+- **API:** TV Maze API `proxy` and internal API
 - **Animations:** Vue Transition, Tailwind CSS
-- **Testing:** `Cypress`, `Gherkin`
+- **Testing:** `Cypress`, `Cucumber`
+- **Services:** `Supabase`, `Cloudflare`
 
 ### Key Features 🚀
 
