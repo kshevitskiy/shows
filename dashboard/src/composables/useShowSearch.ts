@@ -6,7 +6,7 @@ import { useAppState } from "@/composables/useAppState";
 export const useShowSearch = () => {
   const results = ref<ShowDTO[]>([]);
   const pagination = ref<PaginaitonDTO>();
-  const { setPending } = useAppState();
+  const { pending, setPending } = useAppState();
 
   const doSearch = async (params?: GetShowsParams) => {
     setPending(true);
@@ -28,6 +28,7 @@ export const useShowSearch = () => {
   return {
     doSearch,
     doDebounceSearch,
+    pending,
     results,
     pagination,
   };
