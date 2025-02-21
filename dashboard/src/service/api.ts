@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { ShowDTO, PaginaitonDTO, ImageDTO, GenreDTO, SeasonDTO } from "@/types/api";
 
 type Order = "weight" | "rating";
 type OrderDirection = "asc" | "desc";
@@ -40,5 +41,5 @@ export function getShowImages(showId: number) {
 }
 
 export function getShowSeasons(showId: number) {
-  return client.get<unknown[]>(`/v1/shows/${showId}/seasons`);
+  return client.get<SeasonDTO[]>(`/v1/shows/${showId}/seasons`);
 }

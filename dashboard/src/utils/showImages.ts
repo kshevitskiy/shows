@@ -1,3 +1,5 @@
+import type { ImageDTO } from "@/types/api";
+
 export function getRandomBackgroundImage(images: ImageDTO[]) {
   const backgrounds = images.filter((i) => i.type === "background");
   return backgrounds[~~(Math.random() * backgrounds.length)];

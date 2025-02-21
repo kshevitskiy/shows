@@ -1,5 +1,6 @@
 import { reactive, toRefs } from "vue";
 import { createSharedComposable } from "@vueuse/core";
+import type { ImageDTO } from "@/types/api";
 
 interface AppState {
   pending: boolean;

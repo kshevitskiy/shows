@@ -1,5 +1,6 @@
 import { ref, readonly } from "vue";
 import { createSharedComposable } from "@vueuse/core";
+import type { GenreDTO } from "@/types/api";
 
 interface AppData {
   genres: { id: number; name: string }[];

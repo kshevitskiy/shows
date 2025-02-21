@@ -2,6 +2,7 @@ import { ref } from "vue";
 import debounce from "lodash.debounce";
 import { getShows, type GetShowsParams } from "@/service/api";
 import { useAppState } from "@/composables/useAppState";
+import type { ShowDTO, PaginaitonDTO } from "@/types/api";
 
 export const useShowSearch = () => {
   const results = ref<ShowDTO[]>([]);

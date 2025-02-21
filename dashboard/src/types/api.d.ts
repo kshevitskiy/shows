@@ -1,4 +1,4 @@
-interface ShowDTO {
+export interface ShowDTO {
   id: number;
   name: string;
   type: string;
@@ -20,21 +20,21 @@ interface ShowDTO {
   genres: string[];
 }
 
-interface RatingDTO {
+export interface RatingDTO {
   average: string;
 }
 
-interface GenreDTO {
+export interface GenreDTO {
   id: number;
   name: string;
 }
 
-interface PaginaitonDTO {
+export interface PaginaitonDTO {
   page: number;
   pageSize: number;
 }
 
-interface ImageDTO {
+export interface ImageDTO {
   id: number;
   type: string;
   main: boolean;
@@ -44,8 +44,38 @@ interface ImageDTO {
   };
 }
 
-interface ResolutionDTO {
+export interface ResolutionDTO {
   url: string;
   width: number;
   height: number;
+}
+
+export interface SeasonDTO {
+  id: number;
+  url: string;
+  number: number;
+  name: string;
+  episodeOrder: number;
+  premiereDate: string;
+  endDate: string;
+  network: Network;
+  webChannel: any;
+  image: {
+    medium: string;
+    original: string;
+  };
+  summary: string;
+}
+
+export interface NetworkDTO {
+  id: number;
+  name: string;
+  country: Country;
+  officialSite: string;
+}
+
+export interface CountryDTO {
+  name: string;
+  code: string;
+  timezone: string;
 }

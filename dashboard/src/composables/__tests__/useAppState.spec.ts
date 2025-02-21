@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { useAppState } from "../useAppState";
+import type { ImageDTO } from "@/types/api";
 
 describe("useAppState", () => {
   beforeEach(() => {

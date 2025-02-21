@@ -3,12 +3,13 @@ import { ref } from "vue";
 import { getShowSeasons } from "@/service/api";
 import DataList from "@/components/DataList.vue";
 import Image from "@/components/Image.vue";
+import type { SeasonDTO } from "@/types/api";
 
 const props = defineProps<{
   showId: number;
 }>();
 
-const results = ref<unknown[]>([]);
+const results = ref<SeasonDTO[]>([]);
 
 async function fetchData() {
   try {
@@ -32,7 +33,7 @@ await fetchData();
         <Image
           :width="400"
           :height="600"
-          :sizes="item?.image"
+          :sizes="item.image"
           :alt="item.name || `Season ${item.number}`"
           class-name="w-full aspect-2/3 object-cover rounded-2xl p-px border border-white/5"
         />

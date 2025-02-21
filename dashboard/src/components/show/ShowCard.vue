@@ -6,6 +6,7 @@ import { getShowImages } from "@/service/api";
 import { getLargestBackgroundImage } from "@/utils/showImages";
 import Image from "@/components/Image.vue";
 import Tag from "@/components/Tag.vue";
+import type { ShowDTO } from "@/types/api";
 
 const props = withDefaults(
   defineProps<{

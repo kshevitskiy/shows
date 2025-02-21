@@ -12,6 +12,7 @@ import DataSection from "@/components/DataSection.vue";
 import DataPanel from "@/components/DataPanel.vue";
 import ShowSeasons from "@/components/show/ShowSeasons.vue";
 import { getLargestBackgroundImage } from "@/utils/showImages";
+import type { ShowDTO } from "@/types/api";
 
 const route = useRoute();
 const router = useRouter();
@@ -48,16 +49,16 @@ await fetchData();
       <Button label="Watched" as="button" variant="primary" @click="router.back" />
     </Bar>
 
-    <article class="relative grid gap-14">
+    <article v-if="result" class="relative grid gap-14">
       <header>
         <div class="xl:w-2/3">
-          <Tag :label="`⭐️ ${result?.rating.average ?? '0.0'}`" class="mb-6" />
-          <h1 class="font-bold mb-8 text-5xl xl:text-7xl 2xl:text-9xl">{{ result?.name }}</h1>
+          <Tag :label="`⭐️ ${result.rating.average ?? '0.0'}`" class="mb-6" />
+          <h1 class="font-bold mb-8 text-5xl xl:text-7xl 2xl:text-9xl">{{ result.name }}</h1>
         </div>
         <div class="xl:w-4/5">
           <div
             class="leading-relaxed text-amber-100 text-xl xl:text-2xl 2xl:text-3xl"
-            v-html="result?.summary"
+            v-html="result.summary"
           />
           <div v-if="result.genres.length" class="flex flew-wrap gap-2 my-12">
             <Tag v-for="(t, i) in result.genres" :key="i" :label="t" />
