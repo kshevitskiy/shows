@@ -26,8 +26,8 @@
 
 ### 3. UI & UX Design 🎨
 
-- **Mobile-First Design:** Design with mobile in mind, then adapt for desktop and TV.
-- **Focus on Accessibility:**
+- ✅ **Mobile-First Design:** Design with mobile in mind, then adapt for desktop and TV.
+- ⏳ **Focus on Accessibility:**
   1. **ARIA Attributes:** Ensure proper use of ARIA attributes (like aria-label, aria-labelledby, aria-describedby) to improve screen reader support and navigation.
   2. **Keyboard Navigation:**
      Implement proper focus management for keyboard (and remote) navigation, including focus indicators for interactive elements.
