@@ -20,8 +20,8 @@ CREATE TABLE "ratings" (
 );
 --> statement-breakpoint
 CREATE TABLE "show_genres" (
-	"show_id" integer,
-	"genre_id" integer,
+	"show_id" integer NOT NULL,
+	"genre_id" integer NOT NULL,
 	CONSTRAINT "show_genres_show_id_genre_id_pk" PRIMARY KEY("show_id","genre_id")
 );
 --> statement-breakpoint

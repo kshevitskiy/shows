@@ -1,5 +1,5 @@
 {
-  "id": "2195953b-ad4b-4a0f-b4e8-1c55be468169",
+  "id": "ecf96e24-9f6e-4fed-bb8f-4188098de07d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -158,13 +158,13 @@
           "name": "show_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "genre_id": {
           "name": "genre_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         }
       },
       "indexes": {},
