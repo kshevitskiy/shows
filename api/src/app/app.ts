@@ -6,6 +6,7 @@ import {
   useBase,
 } from 'h3'
 import { TV_MAZE_API_URL } from '../constants'
+import cors from './middleware/cors'
 import * as shows from './handlers/shows'
 import * as genres from './handlers/genres'
 
@@ -31,4 +32,5 @@ v2.get('/genres', genres.list)
 router.use('/api/v1/**', useBase('/api/v1', v1.handler))
 router.use('/api/v2/**', useBase('/api/v2', v2.handler))
 
+app.use(cors)
 app.use(router)

@@ -1,5 +1,4 @@
 import 'dotenv/config'
-import { eq } from 'drizzle-orm'
 import { reset } from 'drizzle-seed'
 import { db } from '.'
 import { shows, genres, ratings, images, showGenres } from './schema'
@@ -47,7 +46,7 @@ async function insertShow(show: any) {
       officialSite: show.officialSite,
       weight: show.weight,
       summary: show.summary,
-      updated: new Date(show.updated * 1000),
+      updated: new Date(show.updated * 1000).toISOString(),
     })
     .onConflictDoUpdate({
       target: shows.id,
@@ -64,7 +63,7 @@ async function insertShow(show: any) {
         officialSite: show.officialSite,
         weight: show.weight,
         summary: show.summary,
-        updated: new Date(show.updated * 1000),
+        updated: new Date(show.updated * 1000).toISOString(),
       },
     })
 

@@ -1,7 +1,7 @@
 import { defineEventHandler, getQuery } from 'h3'
 import { db } from '../../db'
 import { shows, images, ratings, genres, showGenres } from '../../db/schema'
-import { asc, desc, eq, sql } from 'drizzle-orm'
+import { asc, desc, eq, sql, ilike, and, type SQL } from 'drizzle-orm'
 
 const PAGE_SIZE = 20
 
@@ -9,6 +9,7 @@ type Order = 'weight' | 'rating'
 type OrderDirection = 'asc' | 'desc'
 
 interface Params {
+  query?: string
   page?: number
   pageSize?: number
   orderBy?: Order
@@ -20,7 +21,7 @@ async function queryShows(params: Params) {
   const _params = {
     page: 1,
     pageSize: PAGE_SIZE,
-    orderBy: 'weight',
+    orderBy: 'rating',
     orderDirection: 'desc',
     ...params,
   }
@@ -56,10 +57,12 @@ async function queryShows(params: Params) {
     .leftJoin(genres, eq(showGenres.genreId, genres.id))
     .groupBy(shows.id, images.medium, images.original, ratings.average)
 
-  // filter
-  if (_params.genreId) {
-    baseQuery.where(eq(showGenres.genreId, _params.genreId))
-  }
+  // filters
+  const filters: SQL[] = []
+  if (_params.query) filters.push(ilike(shows.name, `%${_params.query}%`))
+  if (_params.genreId) filters.push(eq(showGenres.genreId, _params.genreId))
+
+  baseQuery.where(and(...filters))
 
   // sorting
   const _order = _params.orderDirection === 'asc' ? asc : desc
