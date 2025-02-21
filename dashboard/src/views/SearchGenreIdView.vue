@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, useTemplateRef, watchEffect } from "vue";
 import { useRoute } from "vue-router";
-// import { useInfiniteScroll } from "@vueuse/core";
 import { useSearch } from "@/composables/useSearch";
 import { useShowSearch } from "@/composables/useShowSearch";
 import ShowCard from "@/components/show/ShowCard.vue";
