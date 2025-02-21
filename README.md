@@ -1,3 +1,6 @@
+![Detailed Show View Screenshot](/public/detailed-show-view.png)
+_Detailed view of a selected TV show with information including metadata and seasons list._
+
 # TV Maze Project Research
 
 ## Objective
@@ -53,8 +56,9 @@
 
 ### 7. Testing & Iteration 🧪
 
-- **User Testing:** Ensure the app works well on mobile, desktop, and TV.
-- **Automated Testing:** Implement E2E tests to assert the business flows.
+- ⏳ **User Testing:** Ensure the app works well on mobile, desktop, and TV.
+- ✅ **Automated Testing:** Implement E2E tests to assert the business flows.
+  > **Update.** Unit-tests implemented with `vitest`
 
 ## BDD (Behavior-Driven Development)
 
@@ -76,17 +80,6 @@ Focus on BDD to define clear behaviors for the app, ensuring that all scenarios 
   - **When** the user scrolls horizontally through the "Drama" genre
   - **Then** they should see a list of drama shows sorted by ratings
 
-- **Scenario:** Searching for a Show
-
-  - **Given** a user is on the homepage
-  - **When** the user types "Breaking Bad" into the search bar
-  - **Then** they should see a list of shows matching the search term
-
-- **Scenario:** Selecting a Show
-  - **Given** a user is browsing the TV shows
-  - **When** the user selects a show from the list
-  - **Then** they should be redirected to a detailed show page with information about the show
-
 ## Appendix: Key Highlights
 
 ### Tech Stack 🔧
@@ -96,15 +89,15 @@ Focus on BDD to define clear behaviors for the app, ensuring that all scenarios 
 - **State Management:** Vue’s reactivity, LocalStorage
 - **API:** TV Maze API `proxy` and internal API
 - **Animations:** Vue Transition, Tailwind CSS
-- **Testing:** `Cypress`, `Cucumber`
+- **Testing:** `Cypress`, `Cucumber`, `vitest`
 - **Services:** `Supabase`, `Cloudflare`
 
 ### Key Features 🚀
 
-- Horizontal lists of TV shows grouped by genre
+- ~~Horizontal lists~~ Grid of TV shows grouped by genre
 - Sorting by ratings
 - Search functionality
-- Detailed show view with episode list, cast, etc.
+- Detailed show view with ~~episode~~ seasons list, `cast`, etc.
 - Accessibility features for remote navigation (focus management, arrow key navigation)
 
 ## References
