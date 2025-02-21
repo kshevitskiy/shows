@@ -21,13 +21,13 @@ function onFocus(menuItem: MenuItem) {
 </script>
 
 <template>
-  <nav class="grid gap-1" role="navigation">
+  <nav class="inline-flex gap-1 xl:grid" role="navigation">
     <RouterLink
       v-for="(item, i) in items"
       :key="item.id"
       :to="item.to"
       :autofocus="i === activeIndex"
-      class="truncate opacity-50 transition-opacity inline-flex items-center h-12 px-6 outline-none text-lg xl:text-3xl 2xl:text-4xl"
+      class="truncate opacity-50 transition-opacity inline-flex items-center h-12 px-6 outline-none text-xl xl:text-3xl 2xl:text-4xl"
       active-class="font-bold text-amber-400 opacity-100"
       :aria-current="i === activeIndex ? 'page' : undefined"
       @focus="() => onFocus(item)"

@@ -45,7 +45,7 @@ async function onFocus() {
           :height="600"
           :sizes="{ medium: show.image.medium, original: show.image.original }"
           :alt="show.name"
-          class-name="aspect-2/3 object-cover rounded-2xl ring-white/10 group-focus:ring-4 pointer-events-none"
+          class-name="w-full aspect-2/3 object-cover rounded-2xl ring-white/10 group-focus:ring-4 pointer-events-none"
         />
         <Tag
           v-if="show.rating.average"

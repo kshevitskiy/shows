@@ -1,5 +1,5 @@
 <template>
-  <aside class="top-0">
+  <aside class="grid top-0">
     <slot />
   </aside>
 </template>

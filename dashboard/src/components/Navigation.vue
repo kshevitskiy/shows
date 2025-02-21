@@ -13,5 +13,9 @@ const genresNavigation = appData.genres.value.map((i) => ({
 </script>
 
 <template>
-  <Menu :items="genresNavigation" aria-label="Genres Menu" nav-on-focus />
+  <div
+    class="py-3 border border-white/5 rounded-full w-full overflow-x-auto xl:rounded-none xl:py-0 xl:border-none"
+  >
+    <Menu :items="genresNavigation" aria-label="Genres Menu" nav-on-focus />
+  </div>
 </template>

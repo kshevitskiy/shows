@@ -25,7 +25,7 @@ await fetchData();
 <template>
   <DataList
     :items="results"
-    class="grid-cols-5 gap-x-6 gap-y-10 xl:gap-x-12 xl:gap-y-16 2xl:gap-x-16 2xl:gap-y-20"
+    class="gap-x-6 gap-y-10 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-12 xl:gap-y-16 2xl:gap-x-16 2xl:gap-y-20"
   >
     <template #item="{ item }">
       <figure class="mb-3">

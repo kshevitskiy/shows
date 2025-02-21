@@ -50,12 +50,15 @@ await fetchData();
 
     <article class="relative grid gap-14">
       <header>
-        <div class="w-2/3">
+        <div class="xl:w-2/3">
           <Tag :label="`⭐️ ${result?.rating.average}`" class="mb-6" />
-          <h1 class="text-9xl font-bold mb-8">{{ result?.name }}</h1>
+          <h1 class="font-bold mb-8 text-5xl xl:text-7xl 2xl:text-9xl">{{ result?.name }}</h1>
         </div>
-        <div class="w-4/5">
-          <div class="text-2xl leading-relaxed text-amber-100" v-html="result?.summary" />
+        <div class="xl:w-4/5">
+          <div
+            class="leading-relaxed text-amber-100 text-xl xl:text-2xl 2xl:text-3xl"
+            v-html="result?.summary"
+          />
           <div v-if="result.genres.length" class="flex flew-wrap gap-2 my-12">
             <Tag v-for="(t, i) in result.genres" :key="i" :label="t" />
           </div>
@@ -67,7 +70,9 @@ await fetchData();
       </DataSection>
 
       <DataSection label="Details">
-        <div class="grid grid-cols-3 p-px gap-px border border-white/5 rounded-3xl">
+        <div
+          class="grid p-px gap-px border border-white/5 rounded-3xl lg:grid-cols-2 xl:grid-cols-3"
+        >
           <DataPanel label="Type:" :value="result.type" />
           <DataPanel label="Status:" :value="result.status" />
           <DataPanel label="Language:" :value="result.language" />

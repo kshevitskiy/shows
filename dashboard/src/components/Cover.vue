@@ -29,7 +29,7 @@ const original = computed(() => cover.value?.resolutions.original);
           original: original?.url,
         }"
         alt="cover"
-        class-name="w-full h-full object-cover"
+        class-name="w-screen h-screen object-cover"
       />
     </div>
     <div
