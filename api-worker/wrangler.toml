@@ -1,0 +1,14 @@
+name = "tv-shows-api"
+main = "dist/worker.js"
+compatibility_date = "2023-08-01"
+
+compatibility_flags = ["nodejs_compat_v2"]
+
+[observability.logs]
+enabled = true
+
+[vars]
+TV_MAZE_API_URL = "http://api.tvmaze.com"
+
+[build]
+command = "npm run build"
