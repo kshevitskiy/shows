@@ -100,6 +100,10 @@ Focus on BDD to define clear behaviors for the app, ensuring that all scenarios 
 - Detailed show view with ~~episode~~ seasons list, `cast`, etc.
 - Accessibility features for remote navigation (focus management, arrow key navigation)
 
+## Development
+
+For detailed instructions, refer to the [Getting Started Guide](/getting-started.md).
+
 ## References
 
 ### Docs 📚
